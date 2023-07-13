@@ -13,13 +13,13 @@ interface ListItemProps {
 const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
   const router = useRouter();
 
-  const onCLick = () => {
+  const onClick = () => {
     // Add authentication before push
     router.push(href);
   };
   return (
     <button
-    onClick={onclick}
+    onClick={onClick}
       className="
     relative
     group
