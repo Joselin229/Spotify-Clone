@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa";
+import { useUser } from "@supabase/auth-helpers-react";
+import useAuthModal from "@/hooks/useAuthModal";
 
 interface ListItemProps {
   image: string;
@@ -12,9 +14,13 @@ interface ListItemProps {
 
 const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
   const router = useRouter();
+  const user = useUser();
+  const authModal = useAuthModal();
 
   const onClick = () => {
-    // Add authentication before push
+    if (!user) {
+      return authModal.onOpen();
+    }
     router.push(href);
   };
   return (
@@ -40,7 +46,7 @@ const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
         min-w-[64px]
         "
       >
-        <Image className="object-cover" fill src={image} alt="Image" />
+        <Image className="object-cover" src={image} fill alt="Image" />
       </div>
       <p className="font-medium truncate py-5">{name}</p>
       <div
