@@ -8,7 +8,7 @@ interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> =  ({
-    value,
+    value = 1,
     onChange
 }) => {
     const handleChange = (newValue: number[]) => {
