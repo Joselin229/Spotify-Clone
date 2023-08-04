@@ -4,6 +4,7 @@ import useLoadImage from "@/hooks/useLoadImage";
 import { Song } from "@/types";
 import Image from "next/image";
 import PlayButton from "./PlayButton";
+import { useEffect, useState } from "react";
 
 interface SongItemProps {
     data: Song;
@@ -15,6 +16,7 @@ const SongItem: React.FC<SongItemProps> = ({
     onClick
 }) => {
     const imagePath = useLoadImage(data);
+    
   return (
     <div
     onClick={() => onClick(data.id)}
